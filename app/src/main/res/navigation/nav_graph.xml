@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.prodan.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/firstTimeFragment"
+        android:name="com.example.prodan.FirstTimeFragment"
+        android:label="fragment_first_time"
+        tools:layout="@layout/fragment_first_time" />
+    <fragment
+        android:id="@+id/formsFragment"
+        android:name="com.example.prodan.FormsFragment"
+        android:label="fragment_forms"
+        tools:layout="@layout/fragment_forms" />
+    <fragment
+        android:id="@+id/contactFragment"
+        android:name="com.example.prodan.ContactFragment"
+        android:label="fragment_contact"
+        tools:layout="@layout/fragment_contact" />
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.example.prodan.UserFragment"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_user" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.example.prodan.DetailsFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_details" />
+</navigation>
