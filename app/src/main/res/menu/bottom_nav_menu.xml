@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/ic_baseline_help_24"
+        android:title="Contacto"
+        android:id="@+id/contactFragment"/>
+    <item
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="Perfil"
+        android:id="@+id/userFragment"/>
+    <item
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Inicio"
+        android:id="@+id/homeFragment"/>
+    <item
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="Favoritos"
+        android:id="@+id/favoritesFragment"/>
+    <item
+        android:icon="@drawable/ic_baseline_assignment_24"
+        android:title="Formulario"
+        android:id="@+id/formsFragment"/>
+</menu>
