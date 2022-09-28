@@ -35,4 +35,9 @@
         android:name="com.example.prodan.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.prodan.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
 </navigation>
