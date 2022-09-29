@@ -1,14 +1,19 @@
 package com.example.prodan
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import com.example.prodan.databinding.FragmentUserBinding
+import com.github.mikephil.charting.components.AxisBase
+import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.RadarData
 import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 
 // TODO: Rename parameter arguments, choose names that match
@@ -37,36 +42,74 @@ class UserFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding =FragmentUserBinding.inflate(inflater, container, false)
         setVarChart()
+        binding.nextBtn.visibility = View.GONE
+
         return binding.root
+
 
     }
 
     fun setVarChart() {
 
-        val entries: MutableList<RadarEntry> = ArrayList()
-        entries.add(RadarEntry(0f, 30f))
-        entries.add(RadarEntry(1f, 80f))
-        entries.add(RadarEntry(2f, 60f))
-        entries.add(RadarEntry(3f, 50f))
-        entries.add(RadarEntry(5f, 70f))
-        entries.add(RadarEntry(6f, 60f))
+        val xvalues = ArrayList<String>()
+        xvalues.apply{
+            add("Bueno con niños")
+            add("Sociable")
+            add("Energético")
+            add("Amigable")
+            add("Travieso")
+        }
 
-        val set = RadarDataSet(entries, "BarDataSet")
+
+
+        val entries: MutableList<RadarEntry> = ArrayList()
+        entries.add(RadarEntry(1f, "Bueno con niños"))
+        entries.add(RadarEntry(2f, "Sociable"))
+        entries.add(RadarEntry(3f, "Energético"))
+        entries.add(RadarEntry(4f, "Amigable"))
+        entries.add(RadarEntry(5f, "Travieso"))
+
+        val set = RadarDataSet(entries, "RadarDataSet")
         var colorList = mutableListOf<Int>()
         ColorTemplate.JOYFUL_COLORS.forEach {colorList.add(it)  }
 
 
 
         // var colorList = mutableListOf<Int>(ColorTemplate.JOYFUL_COLORS.forEach {  })
-        set.setColors(colorList)
+        set.color = Color.rgb(10, 110, 180)
+        set.fillColor = Color.rgb(10, 110, 180);
+        set.setDrawFilled(true);
+        set.fillAlpha = 180;
+        set.lineWidth = 2f;
+        set.isDrawHighlightCircleEnabled = true;
+        set.setDrawHighlightIndicators(false);
         // set.setColors(ColorTemplate.COLORFUL_COLORS)
 
         var data = RadarData(set)
-        binding.chart1.data = data
-        binding.chart1.animateY(2000)
-        //   binding.migrafica.invalidate()
+        binding.radarChart.data = data
+        binding.radarChart.animateY(2000)
+        binding.radarChart.description.isEnabled = false
+        binding.radarChart.legend.isEnabled = false
+        binding.radarChart.description.text = "Datos"
+        binding.radarChart.xAxis.valueFormatter = (myValueFormater(xvalues))
+
+            //   binding.migrafica.invalidate()
+
 
 
     }
 
+}
+class myValueFormater(private val xvalues : ArrayList<String>) : ValueFormatter(){
+    override fun getFormattedValue(value: Float): String {
+        return value.toString()
+    }
+
+    override fun getAxisLabel(value: Float, axis: AxisBase?): String {
+        if (value.toInt() >= 0 && value.toInt() <= xvalues.size - 1) {
+            return xvalues[value.toInt()]
+        } else {
+            return ("").toString()
+        }
+    }
 }
