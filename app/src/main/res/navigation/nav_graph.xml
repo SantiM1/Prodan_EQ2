@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.prodan.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_fragment_list"
+            app:destination="@id/fragment_list" />
+    </fragment>
     <fragment
         android:id="@+id/firstTimeFragment"
         android:name="com.example.prodan.FirstTimeFragment"
@@ -35,4 +39,9 @@
         android:name="com.example.prodan.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/fragment_list"
+        android:name="com.example.prodan.fragment_list"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_list" />
 </navigation>
