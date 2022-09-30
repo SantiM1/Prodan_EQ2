@@ -44,4 +44,10 @@
         android:name="com.example.prodan.fragment_list"
         android:label="fragment_list"
         tools:layout="@layout/fragment_list" />
+<fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.prodan.FavoritesFragment"
+        android:label="fragment_favorites"
+        tools:layout="@layout/fragment_favorites" />
+
 </navigation>
