@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.view.isVisible
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.example.prodan.databinding.FragmentUserBinding
 import com.github.mikephil.charting.components.AxisBase
@@ -55,7 +56,9 @@ class UserFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.nextBtn.visibility = View.GONE
         binding.editBtn.setOnClickListener {
-            findNavController().navigate(R.id.action_userFragment_to_editProfileFragment)
+            //   findNavController().navigate(R.id.action_userFragment_to_editProfileFragment)
+            Navigation.findNavController(view).navigate(R.id.action_userFragment_to_editProfileFragment)
+
         }
     }
     private fun setVarChart() {

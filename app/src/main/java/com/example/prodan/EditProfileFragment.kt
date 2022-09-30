@@ -1,16 +1,16 @@
-package com.example.prodan.user
+package com.example.prodan
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.prodan.databinding.FragmentEditProfileBinding
-import android.widget.RatingBar
-import android.widget.Toast
-import androidx.navigation.fragment.findNavController
-import com.github.mikephil.charting.components.Description
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -45,51 +45,24 @@ class EditProfileFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding =FragmentEditProfileBinding.inflate(inflater, container, false)
-
+        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        navBar.isVisible = false
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        editProfile()
+
+        editProfile(view)
+
 
     }
 
-    private fun editProfile(){
+    private fun editProfile(view: View){
+        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         getValues()
-        /*
-        binding.ratingBar.setOnRatingBarChangeListener { ratingBar, fl, b ->
-            val r1 = fl
-            Toast.makeText(this.requireActivity(),  fl.toString(), Toast.LENGTH_SHORT).show()
-        }
-        binding.ratingBar2.setOnRatingBarChangeListener { ratingBar, fl, b ->
-            val r2 = fl
-            Toast.makeText(this.requireActivity(),  fl.toString(), Toast.LENGTH_SHORT).show()
-        }
-        binding.ratingBar3.setOnRatingBarChangeListener { ratingBar, fl, b ->
-            val r3 = fl
-            Toast.makeText(this.requireActivity(),  fl.toString(), Toast.LENGTH_SHORT).show()
-        }
-        binding.ratingBar4.setOnRatingBarChangeListener { ratingBar, fl, b ->
-            val r4 = fl
-            Toast.makeText(this.requireActivity(),  fl.toString(), Toast.LENGTH_SHORT).show()
-        }
-        binding.ratingBar5.setOnRatingBarChangeListener { ratingBar, fl, b ->
-            val r5 = fl
-            Toast.makeText(this.requireActivity(), fl.toString(), Toast.LENGTH_SHORT).show()
-        }
-        binding.PetNameEdit.setOnFocusChangeListener { v, hasFocus  ->
-            if(!hasFocus) {
-                Toast.makeText(this.requireActivity(),  binding.PetNameEdit.text, Toast.LENGTH_LONG).show()
-            }
-        }
-        binding.descriptionEdit.setOnFocusChangeListener { v, hasFocus  ->
-            if(!hasFocus) {
-                Toast.makeText(this.requireActivity(),  binding.descriptionEdit.text, Toast.LENGTH_LONG).show()
-            }
-        }
-        */
         binding.saveBtn.setOnClickListener {
+            navBar.isVisible =true
             val r1 = binding.ratingBar.rating
             val r2 = binding.ratingBar2.rating
             val r3 = binding.ratingBar3.rating
@@ -110,10 +83,13 @@ class EditProfileFragment : Fragment() {
                     apply()
                 }
             }
+
+            Navigation.findNavController(view).navigate(R.id.action_editProfileFragment_to_userFragment2)
         }
+
     }
 
-    fun getValues(){
+    private fun getValues(){
         val preferences = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val r1 = preferences?.getFloat("C1", 0f)
         val r2 = preferences?.getFloat("C2", 0f)
