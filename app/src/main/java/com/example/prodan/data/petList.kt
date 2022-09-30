@@ -18,5 +18,21 @@ var petList = mutableListOf(
     pet(
         "Manchas",
         R.drawable.p4
+    ),
+    pet(
+        "Jorge",
+        R.drawable.p5
+    ),
+    pet(
+        "Boby",
+        R.drawable.p6
+    ),
+    pet(
+        "Manzanita",
+        R.drawable.p7
+    ),
+    pet(
+        "Coffee",
+        R.drawable.p8
     )
 )
