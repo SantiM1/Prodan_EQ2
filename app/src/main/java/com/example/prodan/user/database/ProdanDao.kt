@@ -8,9 +8,9 @@ import androidx.room.Query
 import androidx.room.Update
 
 @Dao
-interface GalleryImgDao {
+interface ProdanDao {
 
-    @Query("Select * from GALLERYIMG order by id desc")
+    @Query("Select * from GalleryImg")
     fun getAllGalleryImgs():LiveData<List<GalleryImg>>
 
     @Insert

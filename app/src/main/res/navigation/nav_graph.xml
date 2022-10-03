@@ -33,6 +33,9 @@
         <action
             android:id="@+id/action_userFragment_to_editProfileFragment"
             app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_galleryUploadFragment"
+            app:destination="@id/galleryUploadFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsFragment"
@@ -51,6 +54,15 @@
         tools:layout="@layout/fragment_edit_profile" >
         <action
             android:id="@+id/action_editProfileFragment_to_userFragment2"
+            app:destination="@id/userFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/galleryUploadFragment"
+        android:name="com.example.prodan.GalleryUploadFragment"
+        android:label="fragment_gallery_upload"
+        tools:layout="@layout/fragment_gallery_upload" >
+        <action
+            android:id="@+id/action_galleryUploadFragment_to_userFragment"
             app:destination="@id/userFragment" />
     </fragment>
 </navigation>

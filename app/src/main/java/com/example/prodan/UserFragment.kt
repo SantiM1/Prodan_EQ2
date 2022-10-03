@@ -7,33 +7,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.prodan.databinding.FragmentUserBinding
 import com.github.mikephil.charting.components.AxisBase
-import com.github.mikephil.charting.components.Description
-import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.RadarData
 import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [UserFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class UserFragment : Fragment() {
     private var _binding: FragmentUserBinding? = null
     private val binding get() = _binding!!
 
+    private val evm : GalleryImgViewModel by viewModels {
+        GalleryImgViewModelFactory((activity?.application as ProdanApp).repositoryGallery)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -55,12 +47,33 @@ class UserFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.nextBtn.visibility = View.GONE
+
         binding.editBtn.setOnClickListener {
             //   findNavController().navigate(R.id.action_userFragment_to_editProfileFragment)
-            Navigation.findNavController(view).navigate(R.id.action_userFragment_to_editProfileFragment)
+            Navigation.findNavController(view)
+                .navigate(R.id.action_userFragment_to_editProfileFragment)
 
         }
-    }
+        binding.galleryBtn.setOnClickListener {
+
+            Navigation.findNavController(view).navigate(R.id.action_userFragment_to_galleryUploadFragment)
+
+            }
+        evm.getAllGalleryImgs().observe((viewLifecycleOwner)) {
+            val adapter = GalleryImgAdapter(it) {
+
+                val bundle = Bundle()
+                bundle.putParcelable("galleryImg", it)
+                //Navigation.findNavController(view)
+                    //.navigate(R.id.action_userFragment_to_galleryUploadFragment)
+            }
+
+            binding.rvPetImages.adapter = adapter
+            binding.rvPetImages.layoutManager =
+                LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        }
+        }
+
     private fun setVarChart() {
 
         val preferences = this.activity?.getPreferences(Context.MODE_PRIVATE)
@@ -69,11 +82,10 @@ class UserFragment : Fragment() {
         val r3 = preferences?.getFloat("C3", 0f)
         val r4 = preferences?.getFloat("C4", 0f)
         val r5 = preferences?.getFloat("C5", 0f)
-        val name =preferences?.getString("PetName", "")
         val description = preferences?.getString("Description", "")
 
-        if(name != "" && description != ""){
-            binding.PetName.text = name
+        if(description != ""){
+
             binding.PetDescription.text = description
         }
 

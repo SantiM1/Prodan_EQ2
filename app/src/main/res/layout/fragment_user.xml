@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_pet_images"
+        android:layout_width="410dp"
+        android:layout_height="92dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="99dp"
@@ -58,14 +67,7 @@
         app:layout_constraintStart_toEndOf="@+id/cardView"
         app:layout_constraintTop_toBottomOf="@+id/Pet_Name" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_pet_images"
-        android:layout_width="439dp"
-        android:layout_height="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
     <TextView
         android:id="@+id/textView2"
