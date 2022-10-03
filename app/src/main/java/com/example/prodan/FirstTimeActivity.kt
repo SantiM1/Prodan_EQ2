@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.example.prodan.databinding.ActivityFirstTimeBinding
 
 class FirstTimeActivity : AppCompatActivity() {
@@ -16,6 +17,12 @@ class FirstTimeActivity : AppCompatActivity() {
 
         val sharedPreferences = this?.getPreferences(Context.MODE_PRIVATE) ?: return
 
+        if(!sharedPreferences.getBoolean("firstTime", true)) {
+            Log.d("MainActivity", "First Time: " + sharedPreferences.getBoolean("firstTime", true))
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.buttonExplore.setOnClickListener {
             with(sharedPreferences.edit()) {
                 putBoolean("firstTime", false)
@@ -23,6 +30,7 @@ class FirstTimeActivity : AppCompatActivity() {
             }
 
             val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("forms", false)
             startActivity(intent)
         }
 
@@ -33,7 +41,7 @@ class FirstTimeActivity : AppCompatActivity() {
             }
 
             val intent = Intent(this, MainActivity::class.java)
-            //intent.putExtra("fragmentId", true)
+            intent.putExtra("forms", true)
             startActivity(intent)
         }
     }
