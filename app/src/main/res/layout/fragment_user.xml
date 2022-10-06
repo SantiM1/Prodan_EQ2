@@ -70,7 +70,7 @@
                 android:id="@+id/radarChart"
                 android:layout_width="408dp"
                 android:layout_height="343dp"
-                android:layout_marginStart="2dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/editBtn">
 
@@ -89,6 +89,7 @@
                 android:id="@+id/rv_pet_images"
                 android:layout_width="409dp"
                 android:layout_height="517dp"
+                android:layout_marginTop="8dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

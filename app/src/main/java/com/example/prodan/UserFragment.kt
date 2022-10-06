@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.cloudinary.android.MediaManager
 import com.example.prodan.databinding.FragmentUserBinding
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.data.RadarData

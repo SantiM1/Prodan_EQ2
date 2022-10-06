@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.prodan">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
 
     <application
         android:name = ".ProdanApp"
@@ -13,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PRODAN"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        tools:replace="android:fullBackupContent">
         <activity
             android:name=".FirstTimeActivity"
             android:exported="true">

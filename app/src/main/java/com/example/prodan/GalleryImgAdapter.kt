@@ -3,9 +3,13 @@ package com.example.prodan
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.prodan.user.database.GalleryImg
 import com.example.prodan.databinding.PetImgsListBinding
+import com.cloudinary.*;
+import com.cloudinary.android.MediaManager
 
+private val cloudinary = Cloudinary("cloudinary://<659426591133196>:<R7qZ0JQrEr8uXGAmufMFID5JdJc>@<dhayvgygl>")
 class GalleryImgAdapter(
      var galleryImg: List<GalleryImg>,
      private val funcionX: (GalleryImg) ->Unit ) :
@@ -34,9 +38,15 @@ class GalleryImgAdapter(
 
             titleTextview.text = galleryImg[position].title
             descTextview.text = galleryImg[position].desc
-            //img glide
+
+
+
 
         }
+
+        Glide.with(holder.itemView)
+            .load(MediaManager.get().url().generate(galleryImg[position].imgUrl))
+            .into(holder.binding.img)
 
     }
     override fun getItemCount(): Int {

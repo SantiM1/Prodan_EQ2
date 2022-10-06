@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.cloudinary.android.MediaManager
 import com.example.prodan.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     lateinit var binding: ActivityMainBinding
     lateinit var navController: NavController
+    var config: HashMap<String, String> = HashMap()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +28,12 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.bottomNavigationView
         navView.setupWithNavController(navController)
+
+        config["cloud_name"] = "dhayvgygl"
+        config["api_key"] = "659426591133196"
+        config["api_secret"] = "R7qZ0JQrEr8uXGAmufMFID5JdJc"
+        MediaManager.init(this, config)
+
 
         //  binding.bottomNavigationView.selectedItemId = R.id.homeFragment
 

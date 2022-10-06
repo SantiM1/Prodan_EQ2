@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".GalleryUploadFragment">
 
+    <ImageView
+        android:id="@+id/imgPreview"
+        android:layout_width="64dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="7dp"
+        app:layout_constraintEnd_toStartOf="@+id/FileBtn"
+        app:layout_constraintTop_toTopOf="@+id/editTextTitle"
+        tools:src="@drawable/ic_launcher_background" />
+
     <EditText
         android:id="@+id/editTextTitle"
         android:layout_width="wrap_content"
@@ -24,8 +34,8 @@
         android:id="@+id/FileBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="11dp"
-        android:layout_marginEnd="96dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="124dp"
         android:text="📁"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
@@ -54,17 +64,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textView_upload"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="157dp"
-        android:text="subir imagen"
-        app:layout_constraintEnd_toEndOf="@+id/FileBtn"
-        app:layout_constraintStart_toStartOf="@+id/editTextTitle"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTitle" />
 
     <TextView
         android:id="@+id/TitleTextView"
