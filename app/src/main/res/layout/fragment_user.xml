@@ -117,7 +117,7 @@
                     android:background="@color/white"
                     android:contentDescription="@string/profile_picture"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/ic_launcher_background"
+                    android:src="@drawable/dog_silhouette_logo"
                     tools:ignore="ImageContrastCheck" />
             </androidx.cardview.widget.CardView>
 

@@ -76,7 +76,6 @@ class EditProfileFragment : Fragment() {
         val r3 = preferences?.getFloat("C3", 0f)
         val r4 = preferences?.getFloat("C4", 0f)
         val r5 = preferences?.getFloat("C5", 0f)
-        val name =preferences?.getString("PetName", "")
         val description = preferences?.getString("Description", "")
         binding.apply {
             if (r1 != null) {
