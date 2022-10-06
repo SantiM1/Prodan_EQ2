@@ -32,26 +32,8 @@ class MainActivity : AppCompatActivity() {
         MediaManager.init(this, config)
 
 
-        //  binding.bottomNavigationView.selectedItemId = R.id.homeFragment
-
-        /*   binding.bottomNavigationView.setOnItemSelectedListener {
-               when(it.itemId) {
-                   R.id.homeFragment -> replaceFragment(HomeFragment())
-                   R.id.favoritesFragment -> replaceFragment(FavoritesFragment())
-                   R.id.formsFragment -> replaceFragment(EditProfileFragment())
-                   R.id.userFragment -> replaceFragment(UserFragment())
-                   else -> replaceFragment(ContactFragment())
-               }
-
-               true
-           }*/
+      
     }
 
-    /* fun replaceFragment(fragment: Fragment) {
-         val fragmentManager = supportFragmentManager
-         val fragmentTransaction = fragmentManager.beginTransaction()
 
-         fragmentTransaction.replace(R.id.fragmentContainerView, fragment)
-         fragmentTransaction.commit()
-     }*/
 }
