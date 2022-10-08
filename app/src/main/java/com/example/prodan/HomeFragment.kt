@@ -5,42 +5,30 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
+import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prodan.data.petList
+import com.example.prodan.data.pet
 import com.example.prodan.databinding.FragmentHomeBinding
+import com.example.prodan.network.PetRetriever
+import kotlinx.coroutines.*
 
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    //Pasar lo de API Ejemplo Aquí
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
+    private val petRetriever : PetRetriever = PetRetriever()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         // Inflate the layout for this fragment
@@ -50,37 +38,40 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Creando instancia de adaptador
-        val adapter = adapter(requireActivity(), petList){
-            val bundle = Bundle()
-            bundle.putParcelable("pet",it)
-            //findNavController().navigate(R.id.action_homeFragment_to_detailFragment)
-        }
 
-        binding.rvpet.adapter = adapter
-        binding.rvpet.layoutManager =
-            GridLayoutManager(requireActivity(),
-                2, RecyclerView.VERTICAL, false)
+        fetchComments()
+        initRecyclerView()
+
 
     }
 
-    /*companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment fragment_list.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            fragment_list().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }*/
+    private fun fetchComments() {
+        val petsFetchJob = Job()
+
+        val errorHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+            Toast.makeText(requireContext() , "Error" , Toast.LENGTH_SHORT).show()
+        }
+
+        val scope = CoroutineScope(petsFetchJob + Dispatchers.Main)
+        scope.launch(errorHandler){
+
+            //fetch data
+            val petResponse = petRetriever.getPets()
+
+            //render data in RecyclerView
+            renderData(petResponse)
+        }
+    }
+
+    private fun renderData(petResponse: pet) {
+        binding.rvpet.adapter = adapter(requireActivity(), petResponse){
+            val bundle = Bundle()
+            bundle.putParcelable("pet",it)
+        }
+    }
+
+    private fun initRecyclerView() {
+        binding.rvpet.layoutManager = GridLayoutManager(requireActivity(),
+            2, RecyclerView.VERTICAL, false)
+    }
 }
