@@ -23,47 +23,47 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
     }
+    // Creamos una instancia de petRetriever
     private val petRetriever : PetRetriever = PetRetriever()
 
+    // Cuando se crea el view
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
+        // Inflamos el layout del Fragment
         return binding.root
     }
 
+    // Cuando el view ha sido creado
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
-        fetchComments()
+        // Tomamos la información del API
+        fetchPets()
+        // Insertamos la información en el RecyclerView
         initRecyclerView()
-
-
     }
 
-    private fun fetchComments() {
+    private fun fetchPets() {
+        // Creamos el Job que utilizará la corrutina
         val petsFetchJob = Job()
-
+        // Iniciamos el ErrorHandler
         val errorHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
             Toast.makeText(requireContext() , "Error" , Toast.LENGTH_SHORT).show()
         }
-
+        // Creamos el error para la corrutina
         val scope = CoroutineScope(petsFetchJob + Dispatchers.Main)
         scope.launch(errorHandler){
-
-            //fetch data
+            //obtenemos el data con el petRetriever
             val petResponse = petRetriever.getPets()
-
-            //render data in RecyclerView
+            //insertamos el data en el RecyclerView
             renderData(petResponse)
         }
     }
 
     private fun renderData(petResponse: pet) {
+        // Enviamos la data al adaptador
         binding.rvpet.adapter = adapter(requireActivity(), petResponse){
             val bundle = Bundle()
             bundle.putParcelable("pet",it)
@@ -71,6 +71,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun initRecyclerView() {
+        // Creamos el layout manager
         binding.rvpet.layoutManager = GridLayoutManager(requireActivity(),
             2, RecyclerView.VERTICAL, false)
     }
