@@ -29,7 +29,14 @@
         android:id="@+id/userFragment"
         android:name="com.example.prodan.UserFragment"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_user" />
+        tools:layout="@layout/fragment_user" >
+        <action
+            android:id="@+id/action_userFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_galleryUploadFragment"
+            app:destination="@id/galleryUploadFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.prodan.DetailsFragment"
@@ -40,5 +47,22 @@
         android:name="com.example.prodan.FavoritesFragment"
         android:label="fragment_favorites"
         tools:layout="@layout/fragment_favorites" />
-
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.prodan.EditProfileFragment"
+        android:label="fragment_edit_profile"
+        tools:layout="@layout/fragment_edit_profile" >
+        <action
+            android:id="@+id/action_editProfileFragment_to_userFragment2"
+            app:destination="@id/userFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/galleryUploadFragment"
+        android:name="com.example.prodan.GalleryUploadFragment"
+        android:label="fragment_gallery_upload"
+        tools:layout="@layout/fragment_gallery_upload" >
+        <action
+            android:id="@+id/action_galleryUploadFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
 </navigation>

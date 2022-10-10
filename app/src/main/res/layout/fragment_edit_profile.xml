@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditProfileFragment"
+    tools:layout_editor_absoluteY="81dp">
+
+    <TextView
+        android:id="@+id/descriptionTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="40dp"
+        android:text="Descripción"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/description_Edit"
+        android:layout_width="330dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="12dp"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Escribe una descripción"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/descriptionTitle" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Bueno con niños"
+        android:numStars="5"
+        app:layout_constraintStart_toStartOf="@+id/ratingBar2"
+        app:layout_constraintTop_toTopOf="@+id/Char1" />
+
+    <RatingBar
+        android:id="@+id/ratingBar4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Amigable"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar5"
+        app:layout_constraintStart_toEndOf="@+id/Char4"
+        app:layout_constraintStart_toStartOf="@+id/ratingBar5"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar3" />
+
+    <RatingBar
+        android:id="@+id/ratingBar5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:contentDescription="Travieso"
+        app:layout_constraintBottom_toTopOf="@+id/saveBtn"
+        app:layout_constraintStart_toEndOf="@+id/Char5"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar4" />
+
+    <RatingBar
+        android:id="@+id/ratingBar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Sociable"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar3"
+        app:layout_constraintStart_toEndOf="@+id/Char2"
+        app:layout_constraintStart_toStartOf="@+id/ratingBar3"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+
+    <RatingBar
+        android:id="@+id/ratingBar3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Energético"
+        app:layout_constraintBottom_toTopOf="@+id/ratingBar4"
+        app:layout_constraintStart_toEndOf="@+id/Char3"
+        app:layout_constraintStart_toStartOf="@+id/ratingBar4"
+        app:layout_constraintTop_toBottomOf="@+id/ratingBar2" />
+
+    <TextView
+        android:id="@+id/Char1"
+        android:layout_width="68dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="18dp"
+        android:text="Bueno con niños"
+        app:layout_constraintStart_toStartOf="@+id/Char2"
+        app:layout_constraintTop_toBottomOf="@+id/description_Edit" />
+
+    <TextView
+        android:id="@+id/Char2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sociable"
+        app:layout_constraintStart_toStartOf="@+id/Char3"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar2" />
+
+    <TextView
+        android:id="@+id/Char3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Energético"
+        app:layout_constraintStart_toStartOf="@+id/Char4"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar3" />
+
+    <TextView
+        android:id="@+id/Char4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Amigable"
+        app:layout_constraintStart_toStartOf="@+id/Char5"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar4" />
+
+    <TextView
+        android:id="@+id/Char5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="38dp"
+        android:text="Travieso"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingBar5"
+        app:layout_constraintStart_toStartOf="@+id/description_Edit"
+        app:layout_constraintTop_toTopOf="@+id/ratingBar5" />
+
+    <Button
+        android:id="@+id/saveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="36dp"
+        android:text="Guardar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
