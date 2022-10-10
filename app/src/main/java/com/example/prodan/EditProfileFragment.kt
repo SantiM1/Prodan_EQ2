@@ -12,32 +12,14 @@ import com.example.prodan.databinding.FragmentEditProfileBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [EditProfileFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class EditProfileFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var _binding: FragmentEditProfileBinding? = null
     private val binding get() = _binding!!
 
-    private var param1: String? = null
-    private var param2: String? = null
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -68,7 +50,6 @@ class EditProfileFragment : Fragment() {
             val r3 = binding.ratingBar3.rating
             val r4 = binding.ratingBar4.rating
             val r5 = binding.ratingBar5.rating
-            val name =binding.PetNameEdit.text.toString()
             val description = binding.descriptionEdit.text.toString()
             val preferences = this.activity?.getPreferences(Context.MODE_PRIVATE)
             if (preferences != null) {
@@ -78,7 +59,6 @@ class EditProfileFragment : Fragment() {
                     putFloat("C3", r3)
                     putFloat("C4", r4)
                     putFloat("C5", r5)
-                    putString("PetName", name)
                     putString("Description", description)
                     apply()
                 }
@@ -96,7 +76,6 @@ class EditProfileFragment : Fragment() {
         val r3 = preferences?.getFloat("C3", 0f)
         val r4 = preferences?.getFloat("C4", 0f)
         val r5 = preferences?.getFloat("C5", 0f)
-        val name =preferences?.getString("PetName", "")
         val description = preferences?.getString("Description", "")
         binding.apply {
             if (r1 != null) {
@@ -114,7 +93,6 @@ class EditProfileFragment : Fragment() {
             if (r5 != null) {
                 ratingBar5.rating = r5
             }
-            PetNameEdit.setText(name)
             descriptionEdit.setText(description)
 
         }

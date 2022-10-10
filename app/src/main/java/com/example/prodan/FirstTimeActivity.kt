@@ -15,7 +15,7 @@ class FirstTimeActivity : AppCompatActivity() {
         binding = ActivityFirstTimeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val sharedPreferences = this?.getPreferences(Context.MODE_PRIVATE) ?: return
+        val sharedPreferences = this.getPreferences(Context.MODE_PRIVATE) ?: return
 
         if(!sharedPreferences.getBoolean("firstTime", true)) {
             Log.d("MainActivity", "First Time: " + sharedPreferences.getBoolean("firstTime", true))

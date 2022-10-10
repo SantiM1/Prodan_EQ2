@@ -10,10 +10,12 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/galleryImg"
+            android:id="@+id/img"
             android:layout_width="186dp"
             android:layout_height="197dp"
             android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.073"
             app:layout_constraintStart_toStartOf="parent"
@@ -21,27 +23,27 @@
             app:srcCompat="@drawable/ic_launcher_background" />
 
         <TextView
-            android:id="@+id/Title"
+            android:id="@+id/titleTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="12dp"
             android:text="TextView"
             android:textColor="#040404"
-            app:layout_constraintStart_toEndOf="@+id/galleryImg"
-            app:layout_constraintTop_toTopOf="@+id/galleryImg" />
+            app:layout_constraintStart_toEndOf="@+id/img"
+            app:layout_constraintTop_toTopOf="@+id/img" />
 
         <TextView
-            android:id="@+id/desc"
+            android:id="@+id/descTextview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/Title"
+            app:layout_constraintEnd_toEndOf="@+id/titleTextview"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/Title"
-            app:layout_constraintTop_toBottomOf="@+id/Title"
+            app:layout_constraintStart_toStartOf="@+id/titleTextview"
+            app:layout_constraintTop_toBottomOf="@+id/titleTextview"
             app:layout_constraintVertical_bias="0.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

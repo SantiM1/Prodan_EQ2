@@ -50,6 +50,7 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:layout_marginStart="12dp"
         android:layout_marginBottom="350dp"
         android:text="@string/prodanmty"
@@ -113,6 +114,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btntxt_correo"
         app:layout_constraintStart_toEndOf="@+id/btn_twitter" />
 
+
     <TextView
         android:id="@+id/btntxt_twitter"
         android:layout_width="wrap_content"
@@ -166,6 +168,7 @@
         android:id="@+id/btn_instagram"
         android:layout_width="60dp"
         android:layout_height="60dp"
+
         android:layout_marginStart="37dp"
         android:layout_marginTop="78dp"
         android:layout_marginBottom="32dp"
