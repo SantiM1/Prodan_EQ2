@@ -10,9 +10,9 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="156dp"
+        android:layout_marginStart="157dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="156dp"
+        android:layout_marginEnd="155dp"
         android:text="@string/contacto"
         android:textColor="#000000"
         android:textSize="20sp"
@@ -24,8 +24,8 @@
         android:id="@+id/btn_youtube"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="33dp"
-        android:layout_marginBottom="61dp"
+        android:layout_marginStart="26dp"
+        android:layout_marginBottom="57dp"
         android:scaleType="centerCrop"
         android:src="@drawable/youtube"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
@@ -36,8 +36,8 @@
         android:id="@+id/btntxt_youtube"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginBottom="2dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="8dp"
         android:clickable="true"
         android:text="@string/youtube"
         android:textColor="#1976D2"
@@ -50,28 +50,30 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="9dp"
-        android:layout_marginBottom="334dp"
-        android:text="@string/prodanmtytxt"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="350dp"
+        android:text="@string/prodanmty"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_youtube" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="53dp"
-        android:text="@string/prodanmty"
-        app:layout_constraintBottom_toTopOf="@+id/btntxt_twitter"
-        app:layout_constraintStart_toEndOf="@+id/btn_instagram" />
+    <ImageButton
+        android:id="@+id/btn_twitter"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginBottom="30dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/twitter"
+        app:layout_constraintBottom_toTopOf="@+id/btn_correo"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
 
     <ImageButton
         android:id="@+id/btn_correo"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="227dp"
+        android:layout_marginStart="38dp"
+        android:layout_marginBottom="243dp"
         android:scaleType="centerCrop"
         android:src="@drawable/mail"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -83,8 +85,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginBottom="240dp"
-        android:text="informes@prodan.org.mx"
+        android:layout_marginBottom="256dp"
+        android:text="@string/informes_prodan_org_mx"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_correo" />
 
@@ -94,7 +96,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:clickable="true"
-        android:text="Correo"
+        android:text="@string/correo"
         android:textColor="#1976D2"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
@@ -102,29 +104,14 @@
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
-        android:id="@+id/btntxt_instagram"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:clickable="true"
-        android:text="@string/instagram"
-        android:textColor="#1976D2"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintStart_toEndOf="@+id/btn_instagram"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <ImageButton
-        android:id="@+id/btn_twitter"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="31dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/twitter"
-        app:layout_constraintBottom_toTopOf="@+id/btn_correo"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="SpeakableTextPresentCheck,ImageContrastCheck" />
+        android:layout_marginBottom="57dp"
+        android:text="@string/stringprodanmty"
+        app:layout_constraintBottom_toTopOf="@+id/btntxt_correo"
+        app:layout_constraintStart_toEndOf="@+id/btn_twitter" />
 
     <TextView
         android:id="@+id/btntxt_twitter"
@@ -132,7 +119,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:clickable="true"
-        android:text="Twitter"
+        android:text="@string/twitter"
         android:textColor="#1976D2"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/textView5"
@@ -143,58 +130,75 @@
         android:id="@+id/btn_facebook"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="31dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="35dp"
         android:scaleType="centerCrop"
         android:src="@drawable/facebook"
-        app:layout_constraintBottom_toTopOf="@+id/btn_youtube"
-        app:layout_constraintEnd_toStartOf="@+id/btntxt_facebook"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <TextView
         android:id="@+id/btntxt_facebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="39dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginBottom="1dp"
         android:clickable="true"
-        android:text="Facebook"
+        android:text="@string/facebook"
         android:textColor="#1976D2"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_facebook"
         tools:ignore="TouchTargetSizeCheck" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="56dp"
-        android:text="ProdanAC"
+        android:layout_marginStart="11dp"
+        android:layout_marginBottom="39dp"
+        android:text="@string/prodanac"
         app:layout_constraintBottom_toTopOf="@+id/btntxt_youtube"
         app:layout_constraintStart_toEndOf="@+id/btn_facebook" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginBottom="55dp"
-        android:text="@string/prodanmty"
-        app:layout_constraintBottom_toTopOf="@+id/btntxt_correo"
-        app:layout_constraintStart_toEndOf="@+id/btn_twitter" />
 
     <ImageButton
         android:id="@+id/btn_instagram"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="29dp"
-        android:layout_marginBottom="31dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="78dp"
+        android:layout_marginBottom="32dp"
         android:scaleType="centerCrop"
         android:src="@drawable/instagram"
         app:layout_constraintBottom_toTopOf="@+id/btn_twitter"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
         tools:ignore="SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="2dp"
+        android:text="@string/stringprodanmty"
+        app:layout_constraintStart_toEndOf="@+id/btn_instagram"
+        app:layout_constraintTop_toBottomOf="@+id/btntxt_instagram" />
+
+    <TextView
+        android:id="@+id/btntxt_instagram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="33dp"
+        android:clickable="true"
+        android:text="@string/instagram"
+        android:textColor="#1976D2"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/btn_instagram"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        tools:ignore="TouchTargetSizeCheck" />
 
     <ImageView
         android:id="@+id/imageView"
