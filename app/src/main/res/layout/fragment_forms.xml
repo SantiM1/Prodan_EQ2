@@ -11,4 +11,9 @@
         android:layout_height="match_parent"
         android:text="Formulario" />
 
+    <WebView
+        android:id="@+id/webviewForms"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </FrameLayout>
