@@ -17,7 +17,8 @@ data class GalleryImg @Ignore constructor(
     @NonNull @ColumnInfo(name = "desc") var desc: String,
     @NonNull @ColumnInfo(name = "imgUrl") var imgUrl : String
 ) : Parcelable {
-    constructor(title: String, desc: String, imgUrl: String):this(0,title, desc, imgUrl){
+
+    constructor(title: String, desc: String, imgUrl: String) : this(0, title, desc, imgUrl){
 
     }
 }
