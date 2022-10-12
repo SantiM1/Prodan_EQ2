@@ -1,13 +1,16 @@
 package com.example.prodan
 
 import android.os.Bundle
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.cloudinary.Search
+import com.example.prodan.data.PetX
 import com.example.prodan.data.pet
 import com.example.prodan.databinding.FragmentHomeBinding
 import com.example.prodan.network.PetRetriever
@@ -19,9 +22,11 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    private var petList: List<PetX>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        setHasOptionsMenu(true)
     }
     private val petRetriever : PetRetriever = PetRetriever()
 
@@ -42,7 +47,47 @@ class HomeFragment : Fragment() {
         fetchComments()
         initRecyclerView()
 
+    }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.search_menu, menu)
+
+        val menuItem = menu!!.findItem(R.id.searchView)
+        val searchView: SearchView = menuItem.actionView as SearchView
+        searchView.maxWidth = Int.MAX_VALUE
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.clearFocus()
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val filteredPets: ArrayList<PetX> = ArrayList()
+
+                petList!!.forEach {
+                    if(it.name.lowercase().startsWith(newText.toString().lowercase())) {
+                        Log.d("HomeFragment", it.name)
+                        filteredPets.add(it)
+                    }
+                }
+
+                Log.d("HomeFragment", filteredPets.toString())
+
+                val pet = pet(filteredPets.toList())
+                Log.d("HomeFragment", pet.pets.toString())
+                renderData(pet)
+
+                return false
+            }
+
+        })
+
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return super.onOptionsItemSelected(item)
     }
 
     private fun fetchComments() {
@@ -57,7 +102,7 @@ class HomeFragment : Fragment() {
 
             //fetch data
             val petResponse = petRetriever.getPets()
-
+            petList = petResponse.pets
             //render data in RecyclerView
             renderData(petResponse)
         }
