@@ -6,11 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.prodan.data.pet
 import com.example.prodan.databinding.FragmentHomeBinding
 import com.example.prodan.network.PetRetriever
+import com.example.prodan.user.database.Favourite
 import kotlinx.coroutines.*
 
 class HomeFragment : Fragment() {
@@ -18,6 +20,10 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+
+    private val evm : FavouriteViewModel by viewModels {
+        FavouriteViewModelFactory((activity?.application as ProdanApp).repositoryFavourite)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +49,7 @@ class HomeFragment : Fragment() {
         initRecyclerView()
 
 
+
     }
 
     private fun fetchComments() {
@@ -60,14 +67,25 @@ class HomeFragment : Fragment() {
 
             //render data in RecyclerView
             renderData(petResponse)
+
+            petResponse.pets.filter{it.name == "ISIS"}.forEach{
+                evm.addFavourite(Favourite(it.name, it.name, it.img))
+            }
+
         }
     }
 
     private fun renderData(petResponse: pet) {
-        binding.rvpet.adapter = adapter(requireActivity(), petResponse){
+
+        binding.rvpet.adapter = AdapterHome(requireActivity(), petResponse){
             val bundle = Bundle()
             bundle.putParcelable("pet",it)
+
+
         }
+
+
+
     }
 
     private fun initRecyclerView() {
