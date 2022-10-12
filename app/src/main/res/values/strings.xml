@@ -9,4 +9,14 @@
     <string name="profile_picture">Profile picture</string>
     <string name="plus">+</string>
     <string name="descripcion">descripcion</string>
+    <string name="stringprodanmty">\@prodanmty</string>
+    <string name="correo">Correo</string>
+    <string name="facebook">Facebook</string>
+    <string name="prodanac">ProdanAC</string>
+    <string name="twitter">Twitter</string>
+    <string name="instagram">Instagram</string>
+    <string name="informes_prodan_org_mx">informes@prodan.org.mx</string>
+    <string name="youtube">Youtube</string>
+    <string name="prodanmty">Prodanmty</string>
+    <string name="contacto">Contacto</string>
 </resources>
