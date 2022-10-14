@@ -1,6 +1,7 @@
 package com.example.prodan
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -65,23 +66,29 @@ class HomeFragment : Fragment() {
             //fetch data
             val petResponse = petRetriever.getPets()
 
+            petResponse.pets.filter{ evm.getFavouriteWName(it.name) > 0}.forEach{
+                it.fav = 1
+
+            }
+
             //render data in RecyclerView
             renderData(petResponse)
-
-            petResponse.pets.filter{it.name == "ISIS"}.forEach{
-                evm.addFavourite(Favourite(it.name, it.name, it.img))
-            }
 
         }
     }
 
     private fun renderData(petResponse: pet) {
 
-        binding.rvpet.adapter = AdapterHome(requireActivity(), petResponse){
+        binding.rvpet.adapter = AdapterHome(requireActivity(), petResponse) {
             val bundle = Bundle()
-            bundle.putParcelable("pet",it)
-
-
+            bundle.putParcelable("pet", it)
+            if(it.fav == 1){
+                if(evm.getFavouriteWName(it.name) == 0) {
+                    evm.addFavourite(Favourite(it.name, it.fav, it.img))
+                }
+            }else{
+                evm.deleteFavouriteWName(it.name)
+            }
         }
 
 

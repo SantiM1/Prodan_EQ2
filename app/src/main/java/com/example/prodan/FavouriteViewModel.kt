@@ -13,6 +13,15 @@ class FavouriteViewModel(private val repository: FavouriteRepository) : ViewMode
         return repository.getAllFavourites()
     }
 
+    fun deleteFavouriteWName(name:String){
+        return repository.deleteFavouritesWN(name)
+    }
+
+    fun getFavouriteWName(name:String): Int{
+        return repository.getFavouritesWN(name)
+    }
+
+
 
     fun addFavourite(favourite: Favourite){
         viewModelScope.launch { repository.addFavourite(favourite) }

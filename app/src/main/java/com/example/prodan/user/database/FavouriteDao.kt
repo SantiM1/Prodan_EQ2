@@ -13,6 +13,11 @@ interface FavouriteDao {
     @Query("Select * from Favourite")
     fun getAllFavourites():LiveData<List<Favourite>>
 
+    @Query("Delete from Favourite WHERE name=:name")
+    fun deleteFavouriteWName(name :String)
+
+    @Query("SELECT COUNT(1) FROM Favourite WHERE name =:name")
+    fun getFavouriteWName(name :String): Int
     @Insert
     suspend fun addFavourite(favourite: Favourite)
 

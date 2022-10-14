@@ -17,6 +17,9 @@
         android:theme="@style/Theme.PRODAN"
         tools:targetApi="31"
         tools:replace="android:fullBackupContent">
+        <meta-data
+            android:name="CLOUDINARY_URL"
+            android:value="cloudinary://659426591133196:R7qZ0JQrEr8uXGAmufMFID5JdJc@dhayvgygl" />
         <activity
             android:name=".FirstTimeActivity"
             android:exported="true">

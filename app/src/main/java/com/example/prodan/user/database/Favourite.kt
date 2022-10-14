@@ -14,11 +14,11 @@ import kotlinx.parcelize.Parcelize
 data class Favourite @Ignore constructor(
     @PrimaryKey(autoGenerate = true) var id:Int,
     @NonNull @ColumnInfo(name = "name") var name: String,
-    @NonNull @ColumnInfo(name = "desc") var desc: String,
-    @NonNull @ColumnInfo(name = "imgUrl") var imgUrl : String
+    @NonNull @ColumnInfo(name = "fav") var fav: Int,
+    @NonNull @ColumnInfo(name = "imgUrl") var imgUrl: String
 ) : Parcelable {
 
-    constructor(name: String, desc: String, imgUrl: String) : this(0, name, desc, imgUrl){
+    constructor(name: String, fav: Int, imgUrl: String) : this(0, name, fav, imgUrl){
 
     }
 }

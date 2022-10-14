@@ -13,6 +13,15 @@ class FavouriteRepository (private val favouriteDao : FavouriteDao) {
         return favouriteDao.getAllFavourites()
     }
 
+    fun deleteFavouritesWN(name:String){
+        return favouriteDao.deleteFavouriteWName(name)
+    }
+
+    fun getFavouritesWN(name:String): Int{
+        return favouriteDao.getFavouriteWName(name)
+    }
+
+
 
     suspend fun addFavourite(favourite: Favourite){
         favouriteDao.addFavourite(favourite)

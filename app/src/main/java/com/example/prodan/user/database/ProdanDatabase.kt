@@ -35,7 +35,7 @@ abstract class ProdanDatabase : RoomDatabase() {
             return  INSTANCE ?: synchronized(this) {
 
                 val instance = Room
-                    .databaseBuilder(context, ProdanDatabase::class.java, "prodan_db")
+                    .databaseBuilder(context, ProdanDatabase::class.java, "prodan_db").allowMainThreadQueries()
                     .build()
                 INSTANCE
 
