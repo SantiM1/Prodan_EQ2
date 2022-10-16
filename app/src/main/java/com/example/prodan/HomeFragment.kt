@@ -73,7 +73,7 @@ class HomeFragment : Fragment() {
 
     private fun renderData(petResponse: List<PetX>) {
         // Enviamos la data al adaptador
-        binding.rvpet.adapter = adapter(requireActivity(), petResponse){
+        binding.rvpet.adapter = AdapterHome(requireActivity(), petResponse){
             val bundle = Bundle()
             bundle.putParcelable("pet",it)
             findNavController().navigate(R.id.action_homeFragment_to_detailsFragment,bundle)

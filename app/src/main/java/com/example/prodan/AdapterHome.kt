@@ -9,8 +9,8 @@ import com.example.prodan.data.PetX
 import com.example.prodan.databinding.ItemPetBinding
 
 
-class adapter (val context: Context, var data: List<PetX>, private val funcionX : (PetX) ->Unit ) :
-    RecyclerView.Adapter<adapter.ViewHolder>()
+class AdapterHome (val context: Context, var data: List<PetX>, private val funcionX : (PetX) ->Unit ) :
+    RecyclerView.Adapter<AdapterHome.ViewHolder>()
 {
     class ViewHolder(val binding: ItemPetBinding, funcionZ : (Int) ->Unit) :
         RecyclerView.ViewHolder(binding.root) {
