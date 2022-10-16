@@ -6,11 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.prodan.data.PetX
-import com.example.prodan.data.pet
 import com.example.prodan.databinding.ItemPetBinding
 
 
-class adapter (val context: Context, var data: pet, private val funcionX : (PetX) ->Unit ) :
+class adapter (val context: Context, var data: List<PetX>, private val funcionX : (PetX) ->Unit ) :
     RecyclerView.Adapter<adapter.ViewHolder>()
 {
     class ViewHolder(val binding: ItemPetBinding, funcionZ : (Int) ->Unit) :
@@ -26,24 +25,24 @@ class adapter (val context: Context, var data: pet, private val funcionX : (PetX
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = ItemPetBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(view) {
-            funcionX(data.pets[it])
+            funcionX(data[it])
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.apply {
-            textViewNombre.text = data.pets[position].name
+            textViewNombre.text = data[position].name
         }
 
 
         Glide.with(context)
-            .load(data.pets[position].img)
+            .load(data[position].img)
             .into(holder.binding.imageViewPet)
 
 
     }
 
     override fun getItemCount(): Int {
-        return data.pets.size
+        return data.size
     }
 }

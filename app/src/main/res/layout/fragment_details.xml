@@ -1,14 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DetailsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <ImageView
+        android:id="@+id/imageView_detalles"
+        android:layout_width="128dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="80dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ImageContrastCheck"
+        tools:src="@tools:sample/avatars" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView_detallesNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:text="@string/nombre"
+        android:textColor="#000000"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView_detalles" />
+
+    <TextView
+        android:id="@+id/textView_detallesRaza"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:text="@string/raza"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/textView_detallesEdad"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toEndOf="@+id/textView_detallesRaza_"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detallesNombre" />
+
+    <TextView
+        android:id="@+id/textView_detallesEdad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/edad"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textView_detallesEdad_"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detallesNombre" />
+
+    <TextView
+        android:id="@+id/textView_detallesCustodia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="92dp"
+        android:text="@string/custodia"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textView_detallesCustodia_"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detallesEdad" />
+
+    <TextView
+        android:id="@+id/textViewdetallesTamaño"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="92dp"
+        android:text="@string/tama_o"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/textView_detallesTamaño_"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detallesRaza" />
+
+    <Button
+        android:id="@+id/buttonSolicitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="158dp"
+        android:layout_marginTop="41dp"
+        android:layout_marginEnd="159dp"
+        android:text="@string/solicitar"
+        android:textColor="#3E2723"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detallesCustodia" />
+
+    <TextView
+        android:id="@+id/textView_detallesRaza_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/raza_"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detallesNombre" />
+
+    <TextView
+        android:id="@+id/textView_detallesTamaño_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="92dp"
+        android:text="@string/tama_o_"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detallesRaza_" />
+
+    <TextView
+        android:id="@+id/textView_detallesEdad_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="136dp"
+        android:layout_marginTop="56dp"
+        android:text="@string/edad_"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView_detallesRaza_"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detallesNombre" />
+
+    <TextView
+        android:id="@+id/textView_detallesCustodia_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="92dp"
+        android:text="@string/custodia_"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/textView_detallesTamaño_"
+        app:layout_constraintTop_toBottomOf="@+id/textView_detallesEdad_" />
+</androidx.constraintlayout.widget.ConstraintLayout>

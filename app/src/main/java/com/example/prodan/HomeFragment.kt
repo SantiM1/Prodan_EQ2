@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.prodan.data.pet
+import com.example.prodan.data.PetX
 import com.example.prodan.databinding.FragmentHomeBinding
 import com.example.prodan.network.PetRetriever
 import kotlinx.coroutines.*
@@ -58,15 +59,24 @@ class HomeFragment : Fragment() {
             //obtenemos el data con el petRetriever
             val petResponse = petRetriever.getPets()
             //insertamos el data en el RecyclerView
-            renderData(petResponse)
+            renderData(petResponse.pets)
         }
     }
 
-    private fun renderData(petResponse: pet) {
+    /*private fun renderData(petResponse: pet) {
         // Enviamos la data al adaptador
         binding.rvpet.adapter = adapter(requireActivity(), petResponse){
             val bundle = Bundle()
             bundle.putParcelable("pet",it)
+        }
+    }*/
+
+    private fun renderData(petResponse: List<PetX>) {
+        // Enviamos la data al adaptador
+        binding.rvpet.adapter = adapter(requireActivity(), petResponse){
+            val bundle = Bundle()
+            bundle.putParcelable("pet",it)
+            findNavController().navigate(R.id.action_homeFragment_to_detailsFragment,bundle)
         }
     }
 
