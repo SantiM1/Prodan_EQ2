@@ -63,14 +63,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    /*private fun renderData(petResponse: pet) {
-        // Enviamos la data al adaptador
-        binding.rvpet.adapter = adapter(requireActivity(), petResponse){
-            val bundle = Bundle()
-            bundle.putParcelable("pet",it)
-        }
-    }*/
-
     private fun renderData(petResponse: List<PetX>) {
         // Enviamos la data al adaptador
         binding.rvpet.adapter = AdapterHome(requireActivity(), petResponse){
