@@ -22,7 +22,7 @@ class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private var petList: List<PetX>? = null
+    private var petList: List<PetX> = emptyList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,16 +43,14 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         fetchComments()
         initRecyclerView()
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu, menu)
 
-        val menuItem = menu!!.findItem(R.id.searchView)
+        val menuItem = menu.findItem(R.id.searchView)
         val searchView: SearchView = menuItem.actionView as SearchView
         searchView.maxWidth = Int.MAX_VALUE
 
@@ -64,18 +62,14 @@ class HomeFragment : Fragment() {
 
             override fun onQueryTextChange(newText: String?): Boolean {
                 val filteredPets: ArrayList<PetX> = ArrayList()
+                val query = newText!!.toString().lowercase()
 
-                petList!!.forEach {
-                    if(it.name.lowercase().startsWith(newText.toString().lowercase())) {
-                        Log.d("HomeFragment", it.name)
+                petList.forEach {
+                    if(it.name.lowercase().contains(query) || it.id.toString().lowercase().contains(query))
                         filteredPets.add(it)
-                    }
                 }
 
-                Log.d("HomeFragment", filteredPets.toString())
-
                 val pet = pet(filteredPets.toList())
-                Log.d("HomeFragment", pet.pets.toString())
                 renderData(pet)
 
                 return false
@@ -84,10 +78,6 @@ class HomeFragment : Fragment() {
         })
 
         super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
     }
 
     private fun fetchComments() {
