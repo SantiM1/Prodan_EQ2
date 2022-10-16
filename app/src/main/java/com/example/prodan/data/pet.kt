@@ -42,5 +42,7 @@ data class PetX(
     @SerializedName("telefono")
     val telefono: String,
     @SerializedName("uid")
-    val uid: String
+    val uid: String,
+    @SerializedName("fav")
+    var fav: Int
 ) : Parcelable
