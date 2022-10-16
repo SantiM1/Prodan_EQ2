@@ -1,6 +1,7 @@
 package com.example.prodan
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
@@ -17,6 +18,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        MediaManager.init(this)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -25,13 +29,6 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.bottomNavigationView
         navView.setupWithNavController(navController)
-
-        config["cloud_name"] = "dhayvgygl"
-        config["api_key"] = "659426591133196"
-        config["api_secret"] = "R7qZ0JQrEr8uXGAmufMFID5JdJc"
-        MediaManager.init(this, config)
-
-
       
     }
 

@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
@@ -19,9 +20,7 @@ import com.cloudinary.android.callback.ErrorInfo
 import com.cloudinary.android.callback.UploadCallback
 import com.example.prodan.databinding.FragmentGalleryUploadBinding
 import com.example.prodan.user.database.GalleryImg
-
-
-
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class GalleryUploadFragment : Fragment() {
@@ -49,7 +48,8 @@ class GalleryUploadFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        navBar.isVisible =false
 
         binding.FileBtn.setOnClickListener {
             val galleryIntent = Intent(Intent.ACTION_PICK)
@@ -69,7 +69,6 @@ class GalleryUploadFragment : Fragment() {
 
             evm.addGalleryImg(galleryImg)
 
-
             Navigation.findNavController(view).navigate(R.id.action_galleryUploadFragment_to_userFragment)
         }
 
@@ -88,28 +87,28 @@ class GalleryUploadFragment : Fragment() {
         }
     }
 
-    fun uploadToCloudinary(filepath: Uri?, publicId: String){
+    private fun uploadToCloudinary(filepath: Uri?, publicId: String){
         MediaManager.get().upload(filepath).unsigned("hzvz9qtf").option("public_id", publicId).callback(object : UploadCallback {
             override fun onSuccess(requestId: String?, resultData: MutableMap<Any?, Any?>?) {
-                Toast.makeText(requireContext(), "Task successful", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), "Task successful", Toast.LENGTH_SHORT).show()
             }
 
             override fun onProgress(requestId: String?, bytes: Long, totalBytes: Long) {
-                Toast.makeText(requireContext(), "T", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), "T", Toast.LENGTH_SHORT).show()
             }
 
             override fun onReschedule(requestId: String?, error: ErrorInfo?) {
-                Toast.makeText(requireContext(), "Task Not reschedule"+ error, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), "Task Not reschedule"+ error, Toast.LENGTH_SHORT).show()
             }
 
             override fun onError(requestId: String?, error: ErrorInfo?) {
 
-                Toast.makeText(requireContext(), "Task Not successful"+ error, Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), "Task Not successful"+ error, Toast.LENGTH_SHORT).show()
             }
 
             override fun onStart(requestId: String?) {
 
-                Toast.makeText(requireContext(), "Start", Toast.LENGTH_SHORT).show()
+                //Toast.makeText(requireContext(), "Start", Toast.LENGTH_SHORT).show()
             }
         }).dispatch()
 

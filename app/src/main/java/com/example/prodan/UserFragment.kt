@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,6 +19,7 @@ import com.github.mikephil.charting.data.RadarDataSet
 import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.utils.ColorTemplate
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class UserFragment : Fragment() {
@@ -29,7 +31,6 @@ class UserFragment : Fragment() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -47,6 +48,8 @@ class UserFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        navBar.isVisible =true
         binding.nextBtn.visibility = View.GONE
 
         binding.editBtn.setOnClickListener {
