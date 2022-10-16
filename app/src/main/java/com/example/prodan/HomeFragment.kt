@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cloudinary.Search
@@ -14,6 +15,7 @@ import com.example.prodan.data.PetX
 import com.example.prodan.data.pet
 import com.example.prodan.databinding.FragmentHomeBinding
 import com.example.prodan.network.PetRetriever
+import com.example.prodan.user.database.Favourite
 import kotlinx.coroutines.*
 
 class HomeFragment : Fragment() {
@@ -23,6 +25,10 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var petList: List<PetX> = emptyList()
+    
+    private val evm : FavouriteViewModel by viewModels {
+        FavouriteViewModelFactory((activity?.application as ProdanApp).repositoryFavourite)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -93,16 +99,34 @@ class HomeFragment : Fragment() {
             //fetch data
             val petResponse = petRetriever.getPets()
             petList = petResponse.pets
+
+            petResponse.pets.filter{ evm.getFavouriteWName(it.name) > 0}.forEach{
+                it.fav = 1
+
+            }
+
             //render data in RecyclerView
             renderData(petResponse)
+
         }
     }
 
     private fun renderData(petResponse: pet) {
-        binding.rvpet.adapter = adapter(requireActivity(), petResponse){
+
+        binding.rvpet.adapter = AdapterHome(requireActivity(), petResponse) {
             val bundle = Bundle()
-            bundle.putParcelable("pet",it)
+            bundle.putParcelable("pet", it)
+            if(it.fav == 1){
+                if(evm.getFavouriteWName(it.name) == 0) {
+                    evm.addFavourite(Favourite(it.name, it.fav, it.img))
+                }
+            }else{
+                evm.deleteFavouriteWName(it.name)
+            }
         }
+
+
+
     }
 
     private fun initRecyclerView() {
