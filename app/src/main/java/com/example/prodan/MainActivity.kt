@@ -1,6 +1,7 @@
 package com.example.prodan
 
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
@@ -22,6 +23,18 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentContainerView) as NavHostFragment
         navController = navHostFragment.navController
+
+        val preferences = this.getPreferences(Context.MODE_PRIVATE)
+        val aceptado = preferences.getBoolean("aviso", false)
+
+        if (!aceptado) {
+
+            var dialog = PrivacyPolicyFragment()
+
+            dialog.show(supportFragmentManager, "customDialog")
+            dialog.isCancelable = false
+
+        }
 
         val navView: BottomNavigationView = binding.bottomNavigationView
         navView.setupWithNavController(navController)

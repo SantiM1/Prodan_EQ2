@@ -65,4 +65,9 @@
             android:id="@+id/action_galleryUploadFragment_to_userFragment"
             app:destination="@id/userFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="com.example.prodan.PrivacyPolicyFragment"
+        android:label="fragment_privacy_policy"
+        tools:layout="@layout/fragment_privacy_policy" />
 </navigation>
