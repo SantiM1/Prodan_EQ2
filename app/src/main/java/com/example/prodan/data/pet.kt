@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 @Parcelize
 data class pet(
     @SerializedName("pets")
-    val pets: List<PetX>
+    var pets: List<PetX>
 ) : Parcelable
 
 @Parcelize

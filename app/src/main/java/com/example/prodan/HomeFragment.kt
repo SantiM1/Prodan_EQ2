@@ -14,6 +14,7 @@ import com.example.prodan.data.pet
 import com.example.prodan.databinding.FragmentHomeBinding
 import com.example.prodan.network.PetRetriever
 import com.example.prodan.user.database.Favourite
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.*
 
 class HomeFragment : Fragment() {
@@ -23,6 +24,14 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private var petList: List<PetX> = emptyList()
+    private var currentPetList: List<PetX> = emptyList()
+
+    private val sortList = arrayOf("Nombre", "ID", "Edad", "Tamaño")
+    private var checkedSort = 0
+
+    private val filterList = arrayOf("Perro", "Gato", "Macho", "Hembra", "Grande", "Mediano", "Pequeño")
+    private val uncheckedFilters = BooleanArray(filterList.size)
+    private var checkedFilters = BooleanArray(filterList.size)
     
     private val evm : FavouriteViewModel by viewModels {
         FavouriteViewModelFactory((activity?.application as ProdanApp).repositoryFavourite)
@@ -53,35 +62,131 @@ class HomeFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.search_menu, menu)
-
         val menuItem = menu.findItem(R.id.searchView)
+
+        //Search bar
         val searchView: SearchView = menuItem.actionView as SearchView
         searchView.maxWidth = Int.MAX_VALUE
 
         searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchView.clearFocus()
-                return false
+                return true
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                val filteredPets: ArrayList<PetX> = ArrayList()
                 val query = newText!!.toString().lowercase()
-
-                petList.forEach {
-                    if(it.name.lowercase().contains(query) || it.id.toString().lowercase().contains(query))
-                        filteredPets.add(it)
-                }
-
-                val pet = pet(filteredPets.toList())
+                val filteredPets = petList.filter { it.name.lowercase().contains(query) || it.uid.lowercase().contains(query) }
+                val pet = pet(filteredPets)
                 renderData(pet)
-
-                return false
+                return true
             }
 
         })
 
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.listSort -> showSorts()
+            R.id.listFilters -> showFilters()
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showSorts() {
+        val prevCheckedSort = checkedSort
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Ordenar por:")
+            .setNeutralButton("Cancelar") { _, _ ->
+                checkedSort = prevCheckedSort
+            }
+            .setPositiveButton("Aplicar") { _, _ ->
+                applySort(currentPetList)
+            }
+            .setSingleChoiceItems(sortList, checkedSort) { _, which ->
+                checkedSort = which
+            }
+            .show()
+    }
+
+    private fun applySort(list: List<PetX>) {
+        val sortedPets = when(sortList[checkedSort]) {
+            "ID" -> list.sortedBy { it.uid }
+            "Edad" -> list.sortedBy { it.edad }
+            "Tamaño" -> list.sortedBy { it.tamaño }
+            else -> list.sortedBy { it.name }
+        }
+
+        val pet = pet(sortedPets)
+        renderData(pet)
+    }
+
+    private fun showFilters() {
+        val prevCheckedFilters = checkedFilters
+
+        MaterialAlertDialogBuilder(requireContext())
+            .setTitle("Filtrar por:")
+            .setNeutralButton("Cancelar") { _, _ ->
+                checkedFilters = prevCheckedFilters
+            }
+            .setPositiveButton("Aplicar") { _, _ ->
+                if(!checkedFilters.contentEquals(uncheckedFilters)) {
+                    applyFilters()
+                }
+                else {
+                    currentPetList = petList
+                    applySort(currentPetList)
+                }
+            }
+            .setMultiChoiceItems(filterList, checkedFilters) { _, which, checked ->
+                checkedFilters[which] = checked
+            }
+            .show()
+    }
+
+    private fun applyFilters() {
+        var filteredPets = petList
+
+
+        if(checkedFilters[0] || checkedFilters[1]) {
+            filteredPets = filteredPets.filter {
+                (checkedFilters[0] && it.es.lowercase() == "perro") || (checkedFilters[1] && it.es.lowercase() == "gato")
+            }
+        }
+
+        if(checkedFilters[2] || checkedFilters[3]) {
+            filteredPets = filteredPets.filter {
+                (checkedFilters[2] && it.sexo == "macho") || (checkedFilters[3] && it.sexo == "hembra")
+            }
+        }
+
+        if(checkedFilters[4] || checkedFilters[5] || checkedFilters[6]) {
+            filteredPets = filteredPets.filter {
+                (checkedFilters[4] && it.tamaño == "grande") || (checkedFilters[5] && it.tamaño == "mediano") ||
+                        (checkedFilters[6] && it.tamaño == "pequeño")
+            }
+        }
+
+        currentPetList = filteredPets
+        applySort(filteredPets)
+    }
+
+    private fun applyFilter(list: List<PetX>, filter: String) : List<PetX> {
+        return list.filter {
+            when(filter) {
+                "Perro" -> it.es.lowercase() == "perro"
+                "Gato" -> it.es.lowercase() == "gato"
+                "Grande" -> it.tamaño == "grande"
+                "Mediano" -> it.tamaño == "mediano"
+                "Pequeño" -> it.tamaño == "pequeño"
+                "Macho" -> it.sexo.lowercase() == "macho"
+                else -> it.sexo.lowercase() == "hembra"
+            }
+        }
     }
 
     private fun fetchComments() {
@@ -96,7 +201,9 @@ class HomeFragment : Fragment() {
 
             //fetch data
             val petResponse = petRetriever.getPets()
+            petResponse.pets = petResponse.pets.sortedBy { it.name }
             petList = petResponse.pets
+            currentPetList = petList
 
             petResponse.pets.filter{ evm.getFavouriteWName(it.name) > 0}.forEach{
                 it.fav = 1
