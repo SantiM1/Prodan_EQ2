@@ -8,13 +8,16 @@
     <application
         android:name = ".ProdanApp"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PRODAN"
+
         tools:targetApi="31"
         tools:replace="android:fullBackupContent">
         <meta-data
