@@ -223,13 +223,14 @@ class HomeFragment : Fragment() {
             bundle.putParcelable("pet", it)
             if(it.fav == 1){
                 if(evm.getFavouriteWName(it.name) == 0) {
-                    evm.addFavourite(Favourite(it.name, it.fav, it.img))
+                    evm.addFavourite(Favourite(it.name, it.fav, it.img, it.raza, it.edad, it.tamaño, it.custodia))
                 }
             }else {
                 evm.deleteFavouriteWName(it.name)
             }
            if(Navigation.findNavController((requireView())).currentDestination?.id == R.id.homeFragment &&
-                   it.click == 0) {
+                   //it.click == 0) {
+                    it.custodiade == "Click"){
                 Navigation.findNavController(requireView())
                     .navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
             }

@@ -18,7 +18,7 @@ data class PetX(
     @SerializedName("custodia")
     var custodia: String,
     @SerializedName("custodiade")
-    val custodiade: String,
+    var custodiade: String,
     @SerializedName("des")
     val des: String,
     @SerializedName("edad")
@@ -45,6 +45,6 @@ data class PetX(
     val uid: String,
     @SerializedName("fav")
     var fav: Int,
-    @SerializedName("click")
-    var click: Int
+   // @SerializedName("click")
+    //var click: Int
 ) : Parcelable

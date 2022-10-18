@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.prodan.data.PetX
+import com.example.prodan.data.pet
 import com.example.prodan.databinding.FragmentFavouritesBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -49,14 +52,17 @@ class FavoritesFragment : Fragment() {
 
                 val bundle = Bundle()
                 bundle.putParcelable("favourite", it)
-                //Navigation.findNavController(view)
-                //.navigate(R.id.action_userFragment_to_galleryUploadFragment)
+                val petbundle = Bundle()
+                petbundle.putParcelable("pet", PetX("", it.custodia, "", "", it.edad,"","",0,it.imgUrl, it.name, it.raza,"",it.size, "", "",  it.fav,))
+                Navigation.findNavController(view).navigate(R.id.action_favoritesFragment_to_detailsFragment, petbundle)
             }
 
             binding.rvpet.adapter = adapter
             binding.rvpet.layoutManager = GridLayoutManager(requireActivity(),
                 2, RecyclerView.VERTICAL, false)
         }
+
+
 
          
     }
