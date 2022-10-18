@@ -3,11 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/searchView"
-        android:icon="@android:drawable/ic_menu_search"
+        android:icon="@drawable/ic_baseline_search_24"
         android:title="Search"
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always" />
-    <!--<item
-        android:title="Filtros"
-        app:showAsAction="always" />-->
+    <item
+        android:id="@+id/listFilters"
+        android:icon="@drawable/ic_baseline_filter_list_24"
+        android:title="filters"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/listSort"
+        android:icon="@drawable/ic_baseline_sort_24"
+        android:title="sort"
+        app:showAsAction="always"
+        />
 </menu>
