@@ -109,7 +109,6 @@ class HomeFragment : Fragment() {
             }
             .setSingleChoiceItems(sortList, checkedSort) { _, which ->
                 checkedSort = which
-                Log.d("HomeFragment", which.toString())
             }
             .show()
     }
@@ -143,11 +142,6 @@ class HomeFragment : Fragment() {
                     applySort(currentPetList)
                 }
             }
-            /*.setNegativeButton("Quitar filtros") { _, _ ->
-                checkedFilters = uncheckedFilters
-                currentPetList = petList
-                applySort(currentPetList)
-            }*/
             .setMultiChoiceItems(filterList, checkedFilters) { _, which, checked ->
                 checkedFilters[which] = checked
             }
@@ -157,7 +151,25 @@ class HomeFragment : Fragment() {
     private fun applyFilters() {
         var filteredPets = petList
 
-        Log.d("HomeFragment", filteredPets.toString())
+
+        if(checkedFilters[0] || checkedFilters[1]) {
+            filteredPets = filteredPets.filter {
+                (checkedFilters[0] && it.es.lowercase() == "perro") || (checkedFilters[1] && it.es.lowercase() == "gato")
+            }
+        }
+
+        if(checkedFilters[2] || checkedFilters[3]) {
+            filteredPets = filteredPets.filter {
+                (checkedFilters[2] && it.sexo == "macho") || (checkedFilters[3] && it.sexo == "hembra")
+            }
+        }
+
+        if(checkedFilters[4] || checkedFilters[5] || checkedFilters[6]) {
+            filteredPets = filteredPets.filter {
+                (checkedFilters[4] && it.tamaño == "grande") || (checkedFilters[5] && it.tamaño == "mediano") ||
+                        (checkedFilters[6] && it.tamaño == "pequeño")
+            }
+        }
 
         currentPetList = filteredPets
         applySort(filteredPets)
