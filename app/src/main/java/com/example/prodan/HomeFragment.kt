@@ -1,16 +1,14 @@
 package com.example.prodan
 
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
-import androidx.core.view.MenuItemCompat
 import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.cloudinary.Search
 import com.example.prodan.data.PetX
 import com.example.prodan.data.pet
 import com.example.prodan.databinding.FragmentHomeBinding
@@ -104,9 +102,9 @@ class HomeFragment : Fragment() {
                 it.fav = 1
 
             }
-
             //render data in RecyclerView
             renderData(petResponse)
+
 
         }
     }
@@ -120,12 +118,15 @@ class HomeFragment : Fragment() {
                 if(evm.getFavouriteWName(it.name) == 0) {
                     evm.addFavourite(Favourite(it.name, it.fav, it.img))
                 }
-            }else{
+            }else {
                 evm.deleteFavouriteWName(it.name)
             }
+           if(Navigation.findNavController((requireView())).currentDestination?.id == R.id.homeFragment &&
+                   it.click == 0) {
+                Navigation.findNavController(requireView())
+                    .navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
+            }
         }
-
-
 
     }
 

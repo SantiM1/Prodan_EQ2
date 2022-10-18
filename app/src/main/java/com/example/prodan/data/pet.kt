@@ -16,7 +16,7 @@ data class PetX(
     @SerializedName("correo")
     val correo: String,
     @SerializedName("custodia")
-    val custodia: String,
+    var custodia: String,
     @SerializedName("custodiade")
     val custodiade: String,
     @SerializedName("des")
@@ -28,7 +28,7 @@ data class PetX(
     @SerializedName("fecharescate")
     val fecharescate: String,
     @SerializedName("id")
-    val id: Int,
+    var id: Int,
     @SerializedName("img")
     val img: String,
     @SerializedName("name")
@@ -44,5 +44,7 @@ data class PetX(
     @SerializedName("uid")
     val uid: String,
     @SerializedName("fav")
-    var fav: Int
+    var fav: Int,
+    @SerializedName("click")
+    var click: Int
 ) : Parcelable

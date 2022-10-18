@@ -19,4 +19,15 @@
     <string name="youtube">Youtube</string>
     <string name="prodanmty">Prodanmty</string>
     <string name="contacto">Contacto</string>
+    <string name="todo">TODO</string>
+    <string name="nombre">Nombre</string>
+    <string name="raza">raza</string>
+    <string name="edad">edad</string>
+    <string name="custodia">custodia</string>
+    <string name="tama_o">tamaño</string>
+    <string name="solicitar">Solicitar</string>
+    <string name="raza_">Raza:</string>
+    <string name="tama_o_">Tamaño:</string>
+    <string name="edad_">Edad:</string>
+    <string name="custodia_">Custodia:</string>
 </resources>
