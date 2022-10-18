@@ -41,10 +41,8 @@ class EditProfileFragment : Fragment() {
     }
 
     private fun editProfile(view: View){
-        val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         getValues()
         binding.saveBtn.setOnClickListener {
-            navBar.isVisible =true
             val r1 = binding.ratingBar.rating
             val r2 = binding.ratingBar2.rating
             val r3 = binding.ratingBar3.rating
