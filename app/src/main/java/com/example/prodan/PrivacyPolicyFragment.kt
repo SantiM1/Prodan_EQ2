@@ -83,9 +83,6 @@ class PrivacyPolicyFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.webview.settings.javaScriptEnabled = true
-        binding.webview.loadUrl("https://pages.flycricket.io/prodan/terms.html")
-
         binding.buttonAceptar.setOnClickListener {
 
             if (binding.checkBoxAceptar.isChecked) {
