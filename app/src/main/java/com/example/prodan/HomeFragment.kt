@@ -122,8 +122,7 @@ class HomeFragment : Fragment() {
                 evm.deleteFavouriteWName(it.name)
             }
            if(Navigation.findNavController((requireView())).currentDestination?.id == R.id.homeFragment &&
-                   //it.click == 0) {
-                    it.custodiade == "Click"){
+                   it.click == 0) {
                 Navigation.findNavController(requireView())
                     .navigate(R.id.action_homeFragment_to_detailsFragment, bundle)
             }
