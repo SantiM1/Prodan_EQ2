@@ -1,24 +1,14 @@
 package com.example.prodan
 
 import android.content.Context
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.AdapterView.OnItemClickListener
-import android.widget.Toast
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.prodan.data.PetX
 import com.example.prodan.data.pet
 import com.example.prodan.databinding.ItemPetBinding
-import com.example.prodan.user.database.Favourite
-import com.example.prodan.user.database.ProdanDatabase
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.currentCoroutineContext
-import kotlinx.coroutines.withContext
-import kotlin.contracts.contract
-import kotlin.coroutines.coroutineContext
+
 
 
 class AdapterHome (val context: Context, var data: pet, private val funcionX : (PetX) ->Unit) :
@@ -26,15 +16,18 @@ class AdapterHome (val context: Context, var data: pet, private val funcionX : (
 {
 
 
-    class ViewHolder(val binding: ItemPetBinding,data: pet,  funcionZ : (Int) ->Unit) :
+    class ViewHolder(val binding: ItemPetBinding,data: pet,  funcionZ : (Int) -> Unit, ):
         RecyclerView.ViewHolder(binding.root) {
 
         init {
 
             itemView.setOnClickListener{
+                data.pets[absoluteAdapterPosition].click = 0
                 funcionZ(absoluteAdapterPosition)
+
             }
             binding.imageButton.setOnCheckedChangeListener{ _, isChecked->
+                data.pets[absoluteAdapterPosition].click = 1
                 //data.pets[position].fav = 1
                 if(isChecked){
                     data.pets[absoluteAdapterPosition].fav = 1
@@ -66,6 +59,8 @@ class AdapterHome (val context: Context, var data: pet, private val funcionX : (
         if(data.pets[position].fav == 1){
             holder.binding.imageButton.isChecked = true
         }
+
+
 
     }
 
