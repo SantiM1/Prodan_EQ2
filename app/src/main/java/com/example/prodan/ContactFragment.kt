@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import com.example.prodan.databinding.FragmentContactBinding
 
 // TODO: Rename parameter arguments, choose names that match
@@ -63,6 +64,9 @@ class ContactFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.btnPrivacidad.setOnClickListener{
+            Navigation.findNavController(view).navigate(R.id.action_contactFragment_to_avisoDePrivacidadFragment)
+        }
 
 
         binding.btnFacebook.setOnClickListener {

@@ -24,7 +24,11 @@
         android:id="@+id/contactFragment"
         android:name="com.example.prodan.ContactFragment"
         android:label="fragment_contact"
-        tools:layout="@layout/fragment_contact" />
+        tools:layout="@layout/fragment_contact" >
+        <action
+            android:id="@+id/action_contactFragment_to_avisoDePrivacidadFragment"
+            app:destination="@id/avisoDePrivacidadFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userFragment"
         android:name="com.example.prodan.UserFragment"
@@ -64,5 +68,19 @@
         <action
             android:id="@+id/action_galleryUploadFragment_to_userFragment"
             app:destination="@id/userFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/privacyPolicyFragment"
+        android:name="com.example.prodan.PrivacyPolicyFragment"
+        android:label="fragment_privacy_policy"
+        tools:layout="@layout/fragment_privacy_policy" />
+    <fragment
+        android:id="@+id/avisoDePrivacidadFragment"
+        android:name="com.example.prodan.AvisoDePrivacidadFragment"
+        android:label="fragment_aviso_de_privacidad"
+        tools:layout="@layout/fragment_aviso_de_privacidad" >
+        <action
+            android:id="@+id/action_avisoDePrivacidadFragment_to_contactFragment2"
+            app:destination="@id/contactFragment" />
     </fragment>
 </navigation>
