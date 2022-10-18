@@ -54,7 +54,11 @@
         android:id="@+id/favoritesFragment"
         android:name="com.example.prodan.FavoritesFragment"
         android:label="fragment_favorites"
-        tools:layout="@layout/fragment_favourites" />
+        tools:layout="@layout/fragment_favourites" >
+        <action
+            android:id="@+id/action_favoritesFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/editProfileFragment"
         android:name="com.example.prodan.EditProfileFragment"

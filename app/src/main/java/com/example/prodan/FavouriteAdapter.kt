@@ -18,7 +18,7 @@ class FavouriteAdapter(
 
         init {
             itemView.setOnClickListener{
-                funcionZ(adapterPosition)
+                funcionZ(absoluteAdapterPosition)
             }
         }
     }

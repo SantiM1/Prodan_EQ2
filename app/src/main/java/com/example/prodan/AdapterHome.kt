@@ -22,12 +22,14 @@ class AdapterHome (val context: Context, var data: pet, private val funcionX : (
         init {
 
             itemView.setOnClickListener{
-                data.pets[absoluteAdapterPosition].click = 0
+                //data.pets[absoluteAdapterPosition].click = 0
+                data.pets[absoluteAdapterPosition].custodiade = "Click"
                 funcionZ(absoluteAdapterPosition)
 
             }
             binding.imageButton.setOnCheckedChangeListener{ _, isChecked->
-                data.pets[absoluteAdapterPosition].click = 1
+                //data.pets[absoluteAdapterPosition].click = 1
+                data.pets[absoluteAdapterPosition].custodiade = "No Click"
                 //data.pets[position].fav = 1
                 if(isChecked){
                     data.pets[absoluteAdapterPosition].fav = 1
