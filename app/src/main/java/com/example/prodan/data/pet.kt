@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName
 @Parcelize
 data class pet(
     @SerializedName("pets")
-    val pets: List<PetX>
+    var pets: List<PetX>
 ) : Parcelable
 
 @Parcelize
@@ -16,9 +16,9 @@ data class PetX(
     @SerializedName("correo")
     val correo: String,
     @SerializedName("custodia")
-    val custodia: String,
+    var custodia: String,
     @SerializedName("custodiade")
-    val custodiade: String,
+    var custodiade: String,
     @SerializedName("des")
     val des: String,
     @SerializedName("edad")
@@ -28,7 +28,7 @@ data class PetX(
     @SerializedName("fecharescate")
     val fecharescate: String,
     @SerializedName("id")
-    val id: Int,
+    var id: Int,
     @SerializedName("img")
     val img: String,
     @SerializedName("name")
@@ -42,5 +42,9 @@ data class PetX(
     @SerializedName("telefono")
     val telefono: String,
     @SerializedName("uid")
-    val uid: String
+    val uid: String,
+    @SerializedName("fav")
+    var fav: Int,
+    @SerializedName("click")
+    var click: Int
 ) : Parcelable

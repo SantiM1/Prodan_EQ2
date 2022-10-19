@@ -15,7 +15,6 @@
             android:layout_height="100dp"
             android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.429"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_launcher_background" />
@@ -31,17 +30,5 @@
             app:layout_constraintHorizontal_bias="0.476"
             app:layout_constraintStart_toStartOf="@+id/imageViewPet"
             app:layout_constraintTop_toBottomOf="@+id/imageViewPet" />
-
-        <ToggleButton
-            android:id="@+id/imageButton"
-            android:layout_width="39dp"
-            android:layout_height="39dp"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/toggle_selector"
-            android:minHeight="48dp"
-            android:textOff=""
-            android:textOn=""
-            app:layout_constraintEnd_toEndOf="@+id/imageViewPet"
-            app:layout_constraintTop_toTopOf="@+id/imageViewPet" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
