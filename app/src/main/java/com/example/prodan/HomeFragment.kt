@@ -175,19 +175,6 @@ class HomeFragment : Fragment() {
         applySort(filteredPets)
     }
 
-    private fun applyFilter(list: List<PetX>, filter: String) : List<PetX> {
-        return list.filter {
-            when(filter) {
-                "Perro" -> it.es.lowercase() == "perro"
-                "Gato" -> it.es.lowercase() == "gato"
-                "Grande" -> it.tamaño == "grande"
-                "Mediano" -> it.tamaño == "mediano"
-                "Pequeño" -> it.tamaño == "pequeño"
-                "Macho" -> it.sexo.lowercase() == "macho"
-                else -> it.sexo.lowercase() == "hembra"
-            }
-        }
-    }
 
     private fun fetchComments() {
         val petsFetchJob = Job()
@@ -223,7 +210,7 @@ class HomeFragment : Fragment() {
             bundle.putParcelable("pet", it)
             if(it.fav == 1){
                 if(evm.getFavouriteWName(it.name) == 0) {
-                    evm.addFavourite(Favourite(it.name, it.fav, it.img, it.raza, it.edad, it.tamaño, it.custodia))
+                    evm.addFavourite(Favourite(it.name, it.fav, it.img, it.raza, it.edad, it.tamaño, it.custodia, it.id))
                 }
             }else {
                 evm.deleteFavouriteWName(it.name)
