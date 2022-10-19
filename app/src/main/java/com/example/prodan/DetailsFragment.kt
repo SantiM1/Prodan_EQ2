@@ -1,14 +1,24 @@
 package com.example.prodan
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
 import com.example.prodan.data.PetX
 import com.example.prodan.databinding.FragmentDetailsBinding
+import com.example.prodan.network.NetworkInterface
+import com.example.prodan.network.RetrofitHelper
+import com.example.prodan.network.UsersRequest
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DetailsFragment : Fragment() {
 
@@ -47,9 +57,29 @@ class DetailsFragment : Fragment() {
                 .load(petList.img)
                 .into(binding.imageViewDetalles)
 
+            val retrofit = RetrofitHelper.getInstance().create(NetworkInterface:: class.java)
+            binding.buttonSolicitud.setOnClickListener {
+                lifecycleScope.launch {
+
+                    val sdf = SimpleDateFormat("dd/M/yyyy")
+                    val currentDate = sdf.format(Date())
+                    val userReq =UsersRequest(petList.id,petList.name, currentDate,  petList.img)
+                    retrofit.addPetRequest(userReq)
+                }
+                MaterialAlertDialogBuilder(requireContext())
+                    .setTitle("La solicitud fue enviada")
+                    .setPositiveButton("Aceptar") { _, _ ->
+                        Navigation.findNavController(view).navigate(R.id.action_detailsFragment_to_homeFragment)
+                    }
+                    .show()
+
+
+            }
+
         }
         binding.closeBtn.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_detailsFragment_to_homeFragment)
         }
+
     }
 }

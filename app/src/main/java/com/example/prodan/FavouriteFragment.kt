@@ -53,7 +53,7 @@ class FavoritesFragment : Fragment() {
                 val bundle = Bundle()
                 bundle.putParcelable("favourite", it)
                 val petbundle = Bundle()
-                petbundle.putParcelable("pet", PetX("", it.custodia, "", "", it.edad,"","",0,it.imgUrl, it.name, it.raza,"",it.size, "", "",  it.fav, 0))
+                petbundle.putParcelable("pet", PetX("", it.custodia, "", "", it.edad,"","", it.pid ,it.imgUrl, it.name, it.raza,"",it.size, "", "",  it.fav, it.pid))
                 Navigation.findNavController(view).navigate(R.id.action_favoritesFragment_to_detailsFragment, petbundle)
             }
 
