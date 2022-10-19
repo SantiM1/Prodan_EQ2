@@ -79,8 +79,6 @@ class AvisoDePrivacidadFragment : DialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.webview.settings.javaScriptEnabled = true
-        binding.webview.loadUrl("https://pages.flycricket.io/prodan/privacy.html")
 
         binding.buttonAceptar.setOnClickListener{
             Navigation.findNavController(view).navigate(R.id.action_avisoDePrivacidadFragment_to_contactFragment2)
