@@ -7,6 +7,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.cloudinary.android.MediaManager
@@ -39,11 +40,16 @@ class MainActivity : AppCompatActivity() {
             dialog.show(supportFragmentManager, "customDialog")
             dialog.isCancelable = false
 
+
+        }
+        if(!preferences.getBoolean("Registro", false)) {
+            var dialog = RegisterFragment()
+            dialog.show(supportFragmentManager, "customDialog")
+            dialog.isCancelable = false
         }
 
         val navView: BottomNavigationView = binding.bottomNavigationView
         navView.setupWithNavController(navController)
-      
     }
 
 

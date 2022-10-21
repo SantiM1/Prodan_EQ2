@@ -51,7 +51,11 @@ class UserFragment : Fragment() {
         val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         navBar.isVisible =true
         binding.nextBtn.visibility = View.GONE
-
+        binding.ProfilePicture.setOnClickListener{
+            var dialog = RegisterFragment()
+            parentFragmentManager.let { it1 -> dialog.show(it1, "customDialog") }
+            dialog.isCancelable = true
+        }
         binding.editBtn.setOnClickListener {
             //   findNavController().navigate(R.id.action_userFragment_to_editProfileFragment)
             Navigation.findNavController(view)

@@ -1,5 +1,6 @@
 package com.example.prodan
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -45,6 +46,9 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val preferences = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        val nombre = preferences?.getString("Nombre", "")
+        val tel = preferences?.getString("Teléfono", "")
         val navBar = requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         navBar.isVisible =false
         arguments?.let{
@@ -67,7 +71,7 @@ class DetailsFragment : Fragment() {
 
                     val sdf = SimpleDateFormat("dd/M/yyyy")
                     val currentDate = sdf.format(Date())
-                    val userReq =UsersRequest(petList.id,petList.name, currentDate,  petList.img)
+                    val userReq =UsersRequest(petList.id, nombre.toString(), tel.toString(),  currentDate,  petList.img)
                     retrofit.addPetRequest(userReq)
                 }
                 MaterialAlertDialogBuilder(requireContext())

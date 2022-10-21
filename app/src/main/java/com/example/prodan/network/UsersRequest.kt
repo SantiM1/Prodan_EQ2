@@ -11,6 +11,8 @@ data class  UsersRequest(
     val id: Int,
     @SerializedName("name")
     val user: String,
+    @SerializedName("tel")
+    val tel : String,
     @SerializedName("fecha")
     val date: String,
     @SerializedName("imgl")
