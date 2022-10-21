@@ -24,8 +24,8 @@ android {
     buildFeatures{
         viewBinding = true
     }
-    buildFeatures{
-        viewBinding=true
+    aaptOptions{
+        cruncherEnabled = false
     }
     buildTypes {
         release {
