@@ -5,6 +5,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.prodan.databinding.ActivityFirstTimeBinding
 
 class FirstTimeActivity : AppCompatActivity() {
@@ -40,10 +42,11 @@ class FirstTimeActivity : AppCompatActivity() {
                 putBoolean("firstTime", false)
                 apply()
             }
-
             val intent = Intent(this, MainActivity::class.java)
             intent.putExtra("forms", true)
             startActivity(intent)
         }
+
     }
+
 }
